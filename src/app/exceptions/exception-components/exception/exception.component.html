@@ -1,0 +1,50 @@
+  <div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        
+                        <h4 class="card-title ">Lista de Exceções</h4>
+                        
+                        <p class="card-category">Acompanhe em tempo real como anda a saúde de sua aplicação.</p>
+
+                        <div>
+                            <mat-checkbox (change)="toggleCheckbox(!liveReloading)">
+                                <span style="color: white; font-weight: bold;">Ativar LiveReloading</span></mat-checkbox>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>ID</th>
+                                    <th>Classse Exceção</th>
+                                    <th>Mensagem</th>
+                                    <th>Aplicação</th>
+                                    <th>Tipo da Versão</th>
+                                    <th>Ações</th>
+                                </thead>
+                                <tbody> 
+                                    <tr *ngFor="let exp of listExceptions">
+                                        <td>{{exp.id}}</td>
+                                        <td>{{exp.classExcecao}}</td>
+                                        <td>{{exp.message}}</td>
+                                        <td>{{exp.aplicacao}}</td>
+                                        <td>{{exp.versionType}}</td>
+                                        <td>
+                                            <button class="btn btn-success" style="padding: 5px 30px;" 
+                                                (click)="openDialog(exp.stackTrace, exp.importantLine)">Ver
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
