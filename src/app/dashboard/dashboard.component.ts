@@ -213,10 +213,6 @@ export class DashboardComponent implements OnInit {
         }
       });
 
-      
-
-
-
       var speedCanvas = document.getElementById("speedChart");
 
       var dataFirst = {
