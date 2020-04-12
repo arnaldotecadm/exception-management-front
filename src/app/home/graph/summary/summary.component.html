@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Exceções (%)</h5>
+    <p class="card-category">
+      Distribuição das Exceções ocorridas - Geral
+    </p>
+  </div>
+  <div class="card-body">
+    <canvas id="summaryChart"></canvas>
+  </div>
+  <div class="card-footer">
+    <div class="row legend">
+      <span
+        class="col-md-6 clicavel"
+        *ngFor="let legend of legends"
+        [style.color]="legend.color"
+      >
+        <i class="fa fa-circle" [style.color]="legend.color"></i>
+        {{ legend.nome }}
+      </span>
+    </div>
+    <hr />
+  </div>
+</div>

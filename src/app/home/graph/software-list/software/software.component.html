@@ -1,0 +1,14 @@
+<div class="card card-stats" [ngClass]="selecionado ? 'selecionado' : ''">
+  <div class="card-header card-header-danger card-header-icon">
+    <div class="card-icon" [style.background]="color">
+      <i class="material-icons">info_outline</i>
+    </div>
+    <p class="card-category">Exceções Ocorridas na Aplicação</p>
+    <h3 class="card-title">{{ totalExceptions }}</h3>
+  </div>
+  <div class="card-footer">
+    <div class="stats">
+      <i class="material-icons"></i> App: {{ application }}
+    </div>
+  </div>
+</div>

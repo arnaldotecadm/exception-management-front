@@ -1,0 +1,29 @@
+<div class="col-md-12">
+  <div class="card card-chart">
+    <div class="card-header">
+      <h5 class="card-title">Ocorrências de Exceções Por tipo</h5>
+
+      <div>
+        <p class="card-category">
+          Mostrando os 5 tipo de exceções com maior ocorrência nos últimos 15
+          dias.
+        </p>
+      </div>
+    </div>
+    <div class="card-body">
+      <canvas id="exceptionGrowthByMonth" width="400" height="100"></canvas>
+    </div>
+    <div class="card-footer">
+      <div class="chart-legend">
+        <span *ngFor="let legend of legends" [style.color]="legend.color">
+          <i class="fa fa-circle" [style.color]="legend.color"></i>
+          {{ legend.nome }}
+        </span>
+      </div>
+      <hr />
+      <div class="card-stats">
+        <i class="fa fa-check"></i> Informação atualizada às 14:30
+      </div>
+    </div>
+  </div>
+</div>

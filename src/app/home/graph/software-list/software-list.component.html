@@ -1,0 +1,13 @@
+<div class="row" *ngIf="softwaresList$ | async as softwaresList">
+  <div
+    class="col-lg-3 col-md-6 col-sm-6"
+    *ngFor="let software of softwaresList"
+  >
+    <app-software
+      [totalExceptions]="software.totalExceptions"
+      [application]="software.application"
+      [selecionado]="software.selecionado"
+      (click)="mostrarTodos(software)"
+    ></app-software>
+  </div>
+</div>

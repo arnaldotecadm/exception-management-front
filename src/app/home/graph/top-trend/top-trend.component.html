@@ -1,0 +1,22 @@
+<h3>Incidências dos Últimos 15 dias ({{ numberExceptions }})</h3>
+
+<div style="overflow-x: auto; white-space: nowrap; display: flex;">
+  <div
+    style="width: 500px; margin-right: 15px;"
+    *ngFor="let graph of graphList"
+  >
+    <div class="card card-chart" style="width: 500px;">
+      <div class="card-header card-header-success">
+        <div class="ct-chart" id="{{ graph.title }}"></div>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">{{ graph.title }} => ( {{ graph.total }})</h4>
+      </div>
+      <div class="card-footer">
+        <div class="stats">
+          <i class="material-icons">access_time</i> updated 4 minutes ago
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
