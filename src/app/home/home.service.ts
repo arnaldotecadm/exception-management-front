@@ -39,7 +39,12 @@ export class HomeService {
     );
   }
 
-  getAllPercentages() {
-    return this.http.get<GraphGrouppedByType[]>(apiURL + "/getAllPercentages");
+  getAllPercentages(application: string) {
+    if (!application) {
+      application = "none";
+    }
+    return this.http.get<GraphGrouppedByType[]>(
+      apiURL + "/getAllPercentages/" + application
+    );
   }
 }

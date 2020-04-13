@@ -6,24 +6,101 @@
       ></app-software-list>
     </div>
 
-    <div>
-      <app-top-exception
-        [application]="selectedApplication"
-      ></app-top-exception>
-    </div>
+    <mat-accordion [multi]="true" #accordion>
+      <mat-expansion-panel
+        (opened)="openTopExceptionPanel()"
+        [expanded]="true"
+        #topExceptionPanel
+      >
+        <mat-expansion-panel-header *ngIf="!topExceptionState">
+          <mat-panel-title>
+            Últimas ocorrências
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div
+          id="top-exception"
+          (click)="closeTopExceptionPanel(topExceptionPanel)"
+          style="text-align: right;"
+        >
+          <a
+            href="javascript:void(0)"
+            class="btn btn-danger btn-round"
+            style="padding: 3px 15px;"
+            >fechar</a
+          >
+        </div>
+        <div>
+          <app-top-exception
+            [application]="selectedApplication"
+          ></app-top-exception>
+        </div>
+      </mat-expansion-panel>
 
-    <div>
-      <app-top-trend [application]="selectedApplication"> </app-top-trend>
-    </div>
+      <mat-expansion-panel
+        (opened)="openTopTrendPanel()"
+        [expanded]="true"
+        #topTrendExceptionPanel
+      >
+        <mat-expansion-panel-header *ngIf="!topTrendExceptionState">
+          <mat-panel-title>
+            Últimas ocorrências
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <div class="row">
-      <div class="col-md-4">
-        <app-chart-summary></app-chart-summary>
-      </div>
-      <div class="col-md-8">
-        <app-detail-by-type></app-detail-by-type>
-      </div>
-    </div>
+        <div
+          id="top-trend-exception"
+          (click)="closeTopTrendPanel(topTrendExceptionPanel)"
+          style="text-align: right;"
+        >
+          <a
+            href="javascript:void(0)"
+            class="btn btn-danger btn-round"
+            style="padding: 3px 15px;"
+            >fechar</a
+          >
+        </div>
+
+        <div>
+          <app-top-trend [application]="selectedApplication"> </app-top-trend>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel
+        (opened)="openDetailPanel()"
+        [expanded]="true"
+        #detailExceptionPanel
+      >
+        <mat-expansion-panel-header *ngIf="!detailExceptionState">
+          <mat-panel-title>
+            Visão Detalhada das Exceções
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div
+          id="detail-exception"
+          (click)="closeDetailPanel(detailExceptionPanel)"
+          style="text-align: right;"
+        >
+          <a
+            href="javascript:void(0)"
+            class="btn btn-danger btn-round"
+            style="padding: 3px 15px;"
+            >fechar</a
+          >
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <app-chart-summary
+              [application]="selectedApplication"
+            ></app-chart-summary>
+          </div>
+          <div class="col-md-8">
+            <app-detail-by-type></app-detail-by-type>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
 
     <div class="row">
       <div class="col-lg-6 col-md-12">
@@ -100,7 +177,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -109,7 +185,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -140,7 +215,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -149,7 +223,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -181,7 +254,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -190,7 +262,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -221,7 +292,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -230,7 +300,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -269,7 +338,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -278,7 +346,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -309,7 +376,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -318,7 +384,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -355,7 +420,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -364,7 +428,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -397,7 +460,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -406,7 +468,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>
@@ -438,7 +499,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Edit Task"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">edit</i>
@@ -447,7 +507,6 @@
                           mat-raised-button
                           type="button"
                           matTooltip="Remove"
-                          [matTooltipPosition]="'above'"
                           class="btn btn-danger btn-link btn-sm btn-just-icon"
                         >
                           <i class="material-icons">close</i>

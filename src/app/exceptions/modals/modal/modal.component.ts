@@ -18,7 +18,7 @@ export class ModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
-  onNoClick(idException: ExceptionModel): void {
+  onNoClick(): void {
     this.dialogRef.close();
   }
 

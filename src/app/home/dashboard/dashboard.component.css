@@ -1,0 +1,4 @@
+::ng-deep.mat-expanded {
+  height: max-content;
+  padding-top: 1px !important;
+}

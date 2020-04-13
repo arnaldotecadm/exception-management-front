@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import * as Chartist from "chartist";
 import Chart from "chart.js";
 import { GraphGrouppedByType } from "../../graph-by-month.interface";
@@ -10,6 +10,8 @@ import { HomeService } from "../../home.service";
   styleUrls: ["./summary.component.css"],
 })
 export class SummaryComponent implements OnInit {
+  @Input() application: string = "";
+
   public canvas: any;
   public chartEmail;
   public ctx;
@@ -17,12 +19,22 @@ export class SummaryComponent implements OnInit {
 
   constructor(private homeService: HomeService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    if (changes.application) {
+      this.loadChart();
+    }
+  }
+  panelOpenState = false;
+  ngOnInit(): void {}
+
+  loadChart() {
+    console.log("Carregou...");
     var legendas = [];
     var dados = [];
     var cores = [];
+    this.legends = [];
     this.homeService
-      .getAllPercentages()
+      .getAllPercentages(this.application)
       .subscribe((data: GraphGrouppedByType[]) => {
         data.forEach((info) => {
           legendas.push(info.typeName);
