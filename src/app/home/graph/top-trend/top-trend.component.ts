@@ -48,7 +48,7 @@ export class TopTrendComponent implements OnInit {
 
           graphUnit.title = graph.exceptionType;
           graph.graphModelList.forEach((model: GraphModel) => {
-            graphUnit.labels.push(model.day + "/" + model.month);
+            graphUnit.labels.push(model.day);
             graphUnit.series.push(model.count);
             graphUnit.total += model.count;
           });

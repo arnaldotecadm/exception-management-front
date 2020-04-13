@@ -6,6 +6,7 @@ export interface GraphByMonth {
 export interface GraphModel {
   year: number;
   month: number;
+  week:number;
   day: number;
   count: number;
 }

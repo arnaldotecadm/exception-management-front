@@ -14,7 +14,7 @@
       >
         <mat-expansion-panel-header *ngIf="!topExceptionState">
           <mat-panel-title>
-            Últimas ocorrências
+            Últimas ocorrências, agrupadas por semana
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div
@@ -43,7 +43,7 @@
       >
         <mat-expansion-panel-header *ngIf="!topTrendExceptionState">
           <mat-panel-title>
-            Últimas ocorrências
+            Últimas ocorrências 
           </mat-panel-title>
         </mat-expansion-panel-header>
 
@@ -60,7 +60,7 @@
           >
         </div>
 
-        <div>
+        <div style="min-height: 380px;">
           <app-top-trend [application]="selectedApplication"> </app-top-trend>
         </div>
       </mat-expansion-panel>
@@ -74,7 +74,7 @@
           <mat-panel-title>
             Visão Detalhada das Exceções
           </mat-panel-title>
-        </mat-expansion-panel-header>
+        </mat-expansion-panel-header> 
 
         <div
           id="detail-exception"
