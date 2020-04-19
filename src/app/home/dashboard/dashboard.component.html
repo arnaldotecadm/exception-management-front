@@ -93,10 +93,12 @@
           <div class="col-md-4">
             <app-chart-summary
               [application]="selectedApplication"
+              (loaded)="onSummaryChartLoad($event)"
+              (labelSelected)="onLabelSelected($event)"
             ></app-chart-summary>
           </div>
           <div class="col-md-8">
-            <app-detail-by-type></app-detail-by-type>
+            <app-detail-by-type [application]="selectedApplication" [inputValues]="valores" [selectedLabel]="selectedLabel"></app-detail-by-type>
           </div>
         </div>
       </mat-expansion-panel>

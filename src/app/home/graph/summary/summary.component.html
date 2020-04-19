@@ -8,12 +8,13 @@
   <div class="card-body">
     <canvas id="summaryChart"></canvas>
   </div>
-  <div class="card-footer">
-    <div class="row legend">
+  <div class="card-footer" style="margin: 3px;">
+    <div class="row legend" style="min-width: 100%;">
       <span
         class="col-md-6 clicavel"
         *ngFor="let legend of legends"
         [style.color]="legend.color"
+        (click)="labelClicked(legend.nome)"
       >
         <i class="fa fa-circle" [style.color]="legend.color"></i>
         {{ legend.nome }}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import * as Chartist from "chartist";
 import Chart from "chart.js";
 import { GraphGrouppedByType } from "../../graph-by-month.interface";
@@ -11,11 +11,15 @@ import { HomeService } from "../../home.service";
 })
 export class SummaryComponent implements OnInit {
   @Input() application: string = "";
+  @Output() loaded = new EventEmitter<string[]>();
+  @Output() labelSelected = new EventEmitter<string>();
 
   public canvas: any;
   public chartEmail;
   public ctx;
   legends = [];
+  filterOpts = [];
+  panelOpenState = false;
 
   constructor(private homeService: HomeService) {}
 
@@ -24,15 +28,22 @@ export class SummaryComponent implements OnInit {
       this.loadChart();
     }
   }
-  panelOpenState = false;
+
   ngOnInit(): void {}
 
+  labelClicked(value){
+    this.labelSelected.emit(value);
+  }
+
   loadChart() {
-    console.log("Carregou...");
+    if (this.chartEmail) {
+      this.chartEmail.destroy();
+    }
     var legendas = [];
     var dados = [];
     var cores = [];
     this.legends = [];
+    this.filterOpts = [];
     this.homeService
       .getAllPercentages(this.application)
       .subscribe((data: GraphGrouppedByType[]) => {
@@ -49,6 +60,7 @@ export class SummaryComponent implements OnInit {
             ")";
           cores.push(dynamicColors);
           this.legends.push({ color: dynamicColors, nome: info.typeName });
+          this.filterOpts.push(info.typeName);
         });
 
         this.canvas = document.getElementById("summaryChart");
@@ -89,5 +101,7 @@ export class SummaryComponent implements OnInit {
           },
         });
       });
+
+      this.loaded.emit(this.filterOpts);
   }
 }

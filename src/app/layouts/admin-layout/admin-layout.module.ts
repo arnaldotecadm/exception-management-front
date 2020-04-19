@@ -14,6 +14,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatSelectModule } from "@angular/material/select";
 import { ExceptionlModule } from "../../exceptions/exception-components/exception.module";
 import { HomeModule } from "../../home/home.module";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { RequestInterceptor } from "../../core/auth/request.interceptor.service";
 
 @NgModule({
   imports: [
@@ -35,5 +37,12 @@ import { HomeModule } from "../../home/home.module";
     TableListComponent,
     NotificationsComponent,
   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    }
+  ]
 })
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }

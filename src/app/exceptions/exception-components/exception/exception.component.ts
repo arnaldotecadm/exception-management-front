@@ -8,6 +8,7 @@ import { ModalFiltersComponent } from "../../modals/modal-filters/modal-filters.
 import { ModalComponent } from "../../modals/modal/modal.component";
 
 import { MatPaginator } from "@angular/material/paginator";
+import { HomeService } from "../../../home/home.service";
 
 @Component({
   selector: "app-exception",
@@ -29,6 +30,7 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   constructor(
     private exceptionService: ExceptionService,
+    private homeService : HomeService,
     public dialog: MatDialog
   ) {}
 
@@ -47,6 +49,7 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.realizarConsulta();
+    console.log(this.homeService.getIdentificador());
   }
 
   private realizarConsulta() {

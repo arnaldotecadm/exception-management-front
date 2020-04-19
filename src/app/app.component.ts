@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgZone } from "@angular/core";
+import { HomeService } from "./home/home.service";
 
 @Component({
   selector: "app-root",
@@ -6,7 +7,12 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
+
+  constructor(private homeService : HomeService){}
+
   ngOnInit(): void {
+    var win = window.open('', '_self', '');
+  win.close();
     let $sidebar = $(".sidebar");
 
     if ($sidebar.length !== 0) {

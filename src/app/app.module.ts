@@ -12,7 +12,8 @@ import { AppComponent } from "./app.component";
 import { AgmCoreModule } from "@agm/core";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { ExceptionlModule } from "./exceptions/exception-components/exception.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { RequestInterceptor } from "./core/auth/request.interceptor.service";
 
 @NgModule({
   imports: [
@@ -29,7 +30,13 @@ import { HttpClientModule } from "@angular/common/http";
     }),
   ],
   declarations: [AppComponent, AdminLayoutComponent],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
