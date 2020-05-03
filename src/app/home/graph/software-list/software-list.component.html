@@ -4,9 +4,7 @@
     *ngFor="let software of softwaresList"
   >
     <app-software
-      [totalExceptions]="software.totalExceptions"
-      [application]="software.application"
-      [selecionado]="software.selecionado"
+      [software]="software"
       (click)="mostrarTodos(software)"
     ></app-software>
   </div>

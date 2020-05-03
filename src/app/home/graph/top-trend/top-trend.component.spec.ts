@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { TopTrendComponent } from "./top-trend.component";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TopTrendComponent } from './top-trend.component';
 
-describe("TopTrendExceptionComponent", () => {
+describe('TopTrendExceptionComponent', () => {
   let component: TopTrendComponent;
   let fixture: ComponentFixture<TopTrendComponent>;
 
@@ -17,7 +17,7 @@ describe("TopTrendExceptionComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

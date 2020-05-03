@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { DetailByTypeComponent } from "./detail-by-type.component";
-import { MatSelectModule } from "@angular/material/select";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
+import { DetailByTypeComponent } from './detail-by-type.component';
 
 @NgModule({
   declarations: [DetailByTypeComponent],

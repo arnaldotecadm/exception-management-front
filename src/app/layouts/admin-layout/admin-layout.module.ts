@@ -1,21 +1,21 @@
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AdminLayoutRoutes } from "./admin-layout.routing";
-import { UserProfileComponent } from "../../user-profile/user-profile.component";
-import { TableListComponent } from "../../table-list/table-list.component";
-import { NotificationsComponent } from "../../notifications/notifications.component";
-import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
-import { MatRippleModule } from "@angular/material/core";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatTooltipModule } from "@angular/material/tooltip";
-import { MatSelectModule } from "@angular/material/select";
-import { ExceptionlModule } from "../../exceptions/exception-components/exception.module";
-import { HomeModule } from "../../home/home.module";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { RequestInterceptor } from "../../core/auth/request.interceptor.service";
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
+import { RequestInterceptor } from '../../core/auth/request.interceptor.service';
+import { ExceptionlModule } from '../../exceptions/exception-components/exception.module';
+import { HomeModule } from '../../home/home.module';
+import { NotificationsComponent } from '../../notifications/notifications.component';
+import { TableListComponent } from '../../table-list/table-list.component';
+import { UserProfileComponent } from '../../user-profile/user-profile.component';
+import { AdminLayoutRoutes } from './admin-layout.routing';
 
 @NgModule({
   imports: [
@@ -41,8 +41,8 @@ import { RequestInterceptor } from "../../core/auth/request.interceptor.service"
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class AdminLayoutModule { }
+export class AdminLayoutModule {}

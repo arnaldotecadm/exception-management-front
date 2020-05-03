@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TopExceptionComponent } from './top-exception.component';
 
 describe('TopExceptionComponent', () => {
@@ -8,9 +7,8 @@ describe('TopExceptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopExceptionComponent ]
-    })
-    .compileComponents();
+      declarations: [TopExceptionComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

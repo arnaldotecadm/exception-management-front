@@ -1,6 +1,6 @@
 export interface DialogData {
-  id: number;  
+  id: number;
   animal: string;
   name: string;
-  stackTrace : string;
-  }
+  stackTrace: string;
+}

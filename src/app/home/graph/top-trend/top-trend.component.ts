@@ -1,17 +1,16 @@
-import { Component, OnInit, ChangeDetectorRef, Input } from "@angular/core";
-import { Subject, Observable } from "rxjs";
-import * as Chartist from "chartist";
-import Chart from "chart.js";
-import { GraphByMonth, GraphModel } from "../../graph-by-month.interface";
-import { HomeService } from "../../home.service";
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import * as Chartist from 'chartist';
+import { Observable } from 'rxjs';
+import { GraphByMonth, GraphModel } from '../../graph-by-month.interface';
+import { HomeService } from '../../home.service';
 
 @Component({
-  selector: "app-top-trend",
-  templateUrl: "./top-trend.component.html",
-  styleUrls: ["./top-trend.component.css"],
+  selector: 'app-top-trend',
+  templateUrl: './top-trend.component.html',
+  styleUrls: ['./top-trend.component.css'],
 })
 export class TopTrendComponent implements OnInit {
-  @Input() application: string = "";
+  @Input() application = '';
 
   exceptionList$ = new Observable();
 
@@ -28,7 +27,7 @@ export class TopTrendComponent implements OnInit {
     this.loadChart();
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+  ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
     if (changes.application) {
       this.loadChart();
     }
@@ -41,7 +40,7 @@ export class TopTrendComponent implements OnInit {
       .getTopTrendExceptionDetail(this.application, 1)
       .subscribe((data: GraphByMonth[]) => {
         data.forEach((graph) => {
-          var graphUnit: any = [];
+          const graphUnit: any = [];
           graphUnit.labels = [];
           graphUnit.series = [];
           graphUnit.total = 0;
@@ -85,9 +84,9 @@ export class TopTrendComponent implements OnInit {
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
     };
 
-    var responsiveOptions: any[] = [
+    const responsiveOptions: any[] = [
       [
-        "screen and (max-width: 640px)",
+        'screen and (max-width: 640px)',
         {
           seriesBarDistance: 5,
           axisX: {
@@ -99,8 +98,8 @@ export class TopTrendComponent implements OnInit {
       ],
     ];
 
-    var dailySalesChart = new Chartist.Line(
-      "#" + graph.title,
+    const dailySalesChart = new Chartist.Line(
+      '#' + graph.title,
       dataDailySalesChart,
       optionsDailySalesChart,
       responsiveOptions
@@ -114,8 +113,8 @@ export class TopTrendComponent implements OnInit {
     delays = 80;
     durations = 500;
 
-    chart.on("draw", function (data) {
-      if (data.type === "line" || data.type === "area") {
+    chart.on('draw', function (data) {
+      if (data.type === 'line' || data.type === 'area') {
         data.element.animate({
           d: {
             begin: 600,
@@ -129,7 +128,7 @@ export class TopTrendComponent implements OnInit {
             easing: Chartist.Svg.Easing.easeOutQuint,
           },
         });
-      } else if (data.type === "point") {
+      } else if (data.type === 'point') {
         seq++;
         data.element.animate({
           opacity: {
@@ -137,7 +136,7 @@ export class TopTrendComponent implements OnInit {
             dur: durations,
             from: 0,
             to: 1,
-            easing: "ease",
+            easing: 'ease',
           },
         });
       }
@@ -152,8 +151,8 @@ export class TopTrendComponent implements OnInit {
     seq2 = 0;
     delays2 = 80;
     durations2 = 500;
-    chart.on("draw", function (data) {
-      if (data.type === "bar") {
+    chart.on('draw', function (data) {
+      if (data.type === 'bar') {
         seq2++;
         data.element.animate({
           opacity: {
@@ -161,7 +160,7 @@ export class TopTrendComponent implements OnInit {
             dur: durations2,
             from: 0,
             to: 1,
-            easing: "ease",
+            easing: 'ease',
           },
         });
       }

@@ -1,22 +1,22 @@
-import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
-import { ExceptionModel } from "../exceptionModel";
-import { ExceptionService } from "../exception.service";
-import { Observable, Subscription } from "rxjs";
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ExceptionModel } from '../exceptionModel';
+import { ExceptionService } from '../exception.service';
+import { Observable, Subscription } from 'rxjs';
 
-import { MatDialog } from "@angular/material/dialog";
-import { ModalFiltersComponent } from "../../modals/modal-filters/modal-filters.component";
-import { ModalComponent } from "../../modals/modal/modal.component";
+import { MatDialog } from '@angular/material/dialog';
+import { ModalFiltersComponent } from '../../modals/modal-filters/modal-filters.component';
+import { ModalComponent } from '../../modals/modal/modal.component';
 
-import { MatPaginator } from "@angular/material/paginator";
-import { HomeService } from "../../../home/home.service";
+import { MatPaginator } from '@angular/material/paginator';
+import { HomeService } from '../../../home/home.service';
 
 @Component({
-  selector: "app-exception",
-  templateUrl: "./exception.component.html",
-  styleUrls: ["./exception.component.css"],
+  selector: 'app-exception',
+  templateUrl: './exception.component.html',
+  styleUrls: ['./exception.component.css'],
 })
 export class ExceptionComponent implements OnInit, OnDestroy {
-  @ViewChild("paginacao", { static: true }) paginacao: MatPaginator;
+  @ViewChild('paginacao', { static: true }) paginacao: MatPaginator;
 
   listExceptions: ExceptionModel[] = [];
   liveReloading = false;
@@ -27,10 +27,13 @@ export class ExceptionComponent implements OnInit, OnDestroy {
   id: any;
   stackTrace: any;
   importantLine: String;
+  totalRegistros: number;
+  pageSize = 30;
+  pageActual = 0;
 
   constructor(
     private exceptionService: ExceptionService,
-    private homeService : HomeService,
+    private homeService: HomeService,
     public dialog: MatDialog
   ) {}
 
@@ -42,10 +45,6 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
     this.realizarConsulta();
   }
-
-  totalRegistros: number;
-  pageSize: number = 30;
-  pageActual: number = 0;
 
   ngOnInit(): void {
     this.realizarConsulta();
@@ -65,7 +64,7 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   toggleCheckbox(habilitar) {
     this.liveReloading = habilitar;
-    if (habilitar == true) {
+    if (habilitar === true) {
       this.interval = setInterval(() => {
         this.realizarConsulta();
       }, 2000);
@@ -78,7 +77,7 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   openDialog(idException: ExceptionModel, importantLine: String): void {
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: "900px",
+      width: '900px',
       data: {
         stackTrace: this.stackTrace = idException,
         importantLine: this.importantLine = importantLine,
@@ -93,7 +92,7 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   openDialogFilter(): void {
     const dialogRef = this.dialog.open(ModalFiltersComponent, {
-      width: "900px",
+      width: '900px',
       data: { id: 33 },
     });
   }
@@ -105,7 +104,7 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   removerSubscriptions() {
     this.consulta.forEach((element) => {
-      console.log("Destruindo Componente");
+      console.log('Destruindo Componente');
       element.unsubscribe();
     });
   }

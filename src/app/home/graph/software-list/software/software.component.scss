@@ -7,3 +7,39 @@
 ::ng-deep.card-stats {
   cursor: pointer;
 }
+
+::ng-deep .popover-body {
+  border-radius: 0px 0px 7px 7px !important;
+  background-color: purple !important;
+  width: 550px;
+}
+
+::ng-deep .popover-header.ng-star-inserted {
+  width: 550px;
+}
+
+::ng-deep .col-md-5,
+div.form-group {
+  margin-bottom: 0px !important;
+}
+
+::ng-deep .col-md-5,
+div.form-group,
+label {
+  margin-bottom: 0px !important;
+}
+
+.popover_label::after {
+  content: ":";
+  text-align: right;
+  float: right;
+  font-weight: bold;
+  color: white;
+}
+::ng-deep .popover-body > span > div > div > div > label {
+  color: white;
+}
+
+::ng-deep .bs-popover-right > .arrow::after {
+  border-right-color: purple !important;
+}

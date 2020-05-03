@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DetailByTypeComponent } from './detail-by-type.component';
 
 describe('DetailByTypeComponent', () => {
@@ -8,9 +7,8 @@ describe('DetailByTypeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailByTypeComponent ]
-    })
-    .compileComponents();
+      declarations: [DetailByTypeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { AppSoftwareListComponent } from "./software-list.component";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppSoftwareListComponent } from './software-list.component';
 
-describe("AppListComponent", () => {
+describe('AppListComponent', () => {
   let component: AppSoftwareListComponent;
   let fixture: ComponentFixture<AppSoftwareListComponent>;
 
@@ -17,7 +17,7 @@ describe("AppListComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

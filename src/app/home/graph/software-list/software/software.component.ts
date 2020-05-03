@@ -1,21 +1,12 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  AfterContentInit,
-} from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-software",
-  templateUrl: "./software.component.html",
-  styleUrls: ["./software.component.scss"],
+  selector: 'app-software',
+  templateUrl: './software.component.html',
+  styleUrls: ['./software.component.scss'],
 })
 export class SoftwareComponent implements OnInit {
-  @Input() totalExceptions;
-  @Input() application;
-  @Input() public selecionado = false;
+  @Input() software: any;
 
   color: any;
 
@@ -23,12 +14,12 @@ export class SoftwareComponent implements OnInit {
 
   ngOnInit(): void {
     this.color =
-      "rgb(" +
+      'rgb(' +
       Math.floor(Math.random() * 255) +
-      "," +
+      ',' +
       Math.floor(Math.random() * 255) +
-      "," +
+      ',' +
       Math.floor(Math.random() * 255) +
-      ")";
+      ')';
   }
 }

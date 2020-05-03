@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { TopTrendComponent } from "./top-trend.component";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { TopTrendComponent } from './top-trend.component';
 
 @NgModule({
   declarations: [TopTrendComponent],

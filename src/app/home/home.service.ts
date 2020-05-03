@@ -1,29 +1,32 @@
-import { Injectable, NgZone } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
-import { GraphByMonth, GraphGrouppedByType, GraphModel } from "./graph-by-month.interface";
-import { ExceptionTotalInterface } from "./graph/exception-total.interface";
+import { HttpClient } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
 import { v4 as uuid } from 'uuid';
+import { environment } from '../../environments/environment';
+import {
+  GraphByMonth,
+  GraphGrouppedByType,
+  GraphModel,
+} from './graph-by-month.interface';
+import { ExceptionTotalInterface } from './graph/exception-total.interface';
 
 const apiURL = environment.API_URL;
 const UUID_GERAL = uuid();
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class HomeService {
-
   localIp = sessionStorage.getItem('LOCAL_IP');
 
   private ipRegex = new RegExp(/(\d[0-9]*)/);
 
-  public getIdentificador(): string{
+  public getIdentificador(): string {
     return 'IP_LOCAL: ' + this.localIp + ' - Identificador: ' + UUID_GERAL;
   }
 
-  public getLocalIpAddress(): string{
+  public getLocalIpAddress(): string {
     return this.localIp;
   }
 
-  public getUUID(): string{
+  public getUUID(): string {
     return UUID_GERAL;
   }
 
@@ -49,68 +52,61 @@ export class HomeService {
     };
   }
 
-  private getRTCPeerConnection() : any {
-    return window.RTCPeerConnection ||
-      window.webkitRTCPeerConnection;
+  private getRTCPeerConnection(): any {
+    return window.RTCPeerConnection || window.webkitRTCPeerConnection;
   }
 
-
-
-
-
-  constructor(private http: HttpClient, private zone: NgZone) {
-    this.determineLocalIp();
-  }
+  constructor(private http: HttpClient, private zone: NgZone) {}
 
   getDetailByType(application: string, exceptionType: string) {
     if (!application) {
-      application = "none";
+      application = 'none';
     }
 
     if (!exceptionType) {
-      exceptionType = "none";
+      exceptionType = 'none';
     }
 
     return this.http.get<GraphModel[]>(
-      apiURL + "/getGrouppedByMonth/" + application + "/" + exceptionType
+      apiURL + '/getGrouppedByMonth/' + application + '/' + exceptionType
     );
   }
 
   getGrouppedByMonth(application: string, typeLimit: number) {
     if (!application) {
-      application = "none";
+      application = 'none';
     }
 
     return this.http.get<GraphByMonth[]>(
-      apiURL + "/getGrouppedByMonthV2/" + application + "/" + typeLimit
+      apiURL + '/getGrouppedByMonthV2/' + application + '/' + typeLimit
     );
   }
 
   getTotalException() {
-    return this.http.get<ExceptionTotalInterface[]>(apiURL + "/totalException");
+    return this.http.get<ExceptionTotalInterface[]>(apiURL + '/totalException');
   }
 
   getTopTrendExceptionName(typeLimit: number) {
     return this.http.get<string[]>(
-      apiURL + "/top-trend-exception-name/" + typeLimit
+      apiURL + '/top-trend-exception-name/' + typeLimit
     );
   }
 
   getTopTrendExceptionDetail(application: string, typeLimit: number) {
     if (!application) {
-      application = "none";
+      application = 'none';
     }
     return this.http.get<GraphByMonth[]>(
-      apiURL + "/top-trend-exception-detail/" + application + "/" + typeLimit
+      apiURL + '/top-trend-exception-detail/' + application + '/' + typeLimit
     );
   }
 
   getAllPercentages(application: string) {
     if (!application) {
-      application = "none";
+      application = 'none';
     }
     return this.http.get<GraphGrouppedByType[]>(
-      apiURL + "/getAllPercentages/" + application
+      apiURL + '/getAllPercentages/' + application
     );
   }
 }

@@ -7,9 +7,8 @@ describe('ExceprionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExceptionComponent ]
-    })
-    .compileComponents();
+      declarations: [ExceptionComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,16 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import * as Chartist from "chartist";
-import Chart from "chart.js";
-import { GraphGrouppedByType } from "../../graph-by-month.interface";
-import { HomeService } from "../../home.service";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import Chart from 'chart.js';
+import { GraphGrouppedByType } from '../../graph-by-month.interface';
+import { HomeService } from '../../home.service';
 
 @Component({
-  selector: "app-chart-summary",
-  templateUrl: "./summary.component.html",
-  styleUrls: ["./summary.component.css"],
+  selector: 'app-chart-summary',
+  templateUrl: './summary.component.html',
+  styleUrls: ['./summary.component.css'],
 })
 export class SummaryComponent implements OnInit {
-  @Input() application: string = "";
+  @Input() application = '';
   @Output() loaded = new EventEmitter<string[]>();
   @Output() labelSelected = new EventEmitter<string>();
 
@@ -23,7 +22,7 @@ export class SummaryComponent implements OnInit {
 
   constructor(private homeService: HomeService) {}
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+  ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
     if (changes.application) {
       this.loadChart();
     }
@@ -31,7 +30,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  labelClicked(value){
+  labelClicked(value) {
     this.labelSelected.emit(value);
   }
 
@@ -39,9 +38,9 @@ export class SummaryComponent implements OnInit {
     if (this.chartEmail) {
       this.chartEmail.destroy();
     }
-    var legendas = [];
-    var dados = [];
-    var cores = [];
+    const legendas = [];
+    const dados = [];
+    const cores = [];
     this.legends = [];
     this.filterOpts = [];
     this.homeService
@@ -50,29 +49,29 @@ export class SummaryComponent implements OnInit {
         data.forEach((info) => {
           legendas.push(info.typeName);
           dados.push(info.count);
-          var dynamicColors =
-            "rgb(" +
+          const dynamicColors =
+            'rgb(' +
             Math.floor(Math.random() * 255) +
-            "," +
+            ',' +
             Math.floor(Math.random() * 255) +
-            "," +
+            ',' +
             Math.floor(Math.random() * 255) +
-            ")";
+            ')';
           cores.push(dynamicColors);
           this.legends.push({ color: dynamicColors, nome: info.typeName });
           this.filterOpts.push(info.typeName);
         });
 
-        this.canvas = document.getElementById("summaryChart");
-        this.ctx = this.canvas.getContext("2d");
+        this.canvas = document.getElementById('summaryChart');
+        this.ctx = this.canvas.getContext('2d');
 
         this.chartEmail = new Chart(this.ctx, {
-          type: "pie",
+          type: 'pie',
           data: {
             labels: legendas,
             datasets: [
               {
-                label: "Emails",
+                label: 'Emails',
                 pointRadius: 0,
                 pointHoverRadius: 0,
                 backgroundColor: cores,
@@ -85,13 +84,13 @@ export class SummaryComponent implements OnInit {
           options: {
             legend: {
               display: false,
-              position: "left",
-              align: "center",
+              position: 'left',
+              align: 'center',
             },
 
             pieceLabel: {
-              render: "percentage",
-              fontColor: ["red"],
+              render: 'percentage',
+              fontColor: ['red'],
               precision: 2,
             },
 
@@ -102,6 +101,6 @@ export class SummaryComponent implements OnInit {
         });
       });
 
-      this.loaded.emit(this.filterOpts);
+    this.loaded.emit(this.filterOpts);
   }
 }
