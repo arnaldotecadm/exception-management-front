@@ -1,5 +1,5 @@
 import { Location, PopStateEvent } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import * as $ from 'jquery';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -15,6 +15,7 @@ export class AdminLayoutComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
+  windowScrolled: boolean;
 
   constructor(public location: Location, private router: Router) {}
 
@@ -147,6 +148,7 @@ export class AdminLayoutComponent implements OnInit {
       }
     });
   }
+
   ngAfterViewInit() {
     this.runOnRouteChange();
   }
@@ -167,5 +169,33 @@ export class AdminLayoutComponent implements OnInit {
       bool = true;
     }
     return bool;
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop > 200
+    ) {
+      this.windowScrolled = true;
+    } else if (
+      (this.windowScrolled && window.pageYOffset) ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop < 10
+    ) {
+      this.windowScrolled = false;
+    }
+  }
+
+  scrollToTop() {
+    (function smoothscroll() {
+      const currentScroll =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - currentScroll / 8);
+      }
+    })();
   }
 }
