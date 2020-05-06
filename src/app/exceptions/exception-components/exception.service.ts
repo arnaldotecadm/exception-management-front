@@ -1,7 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { ExceptionModel } from './exceptionModel';
 import { PaginacaoInterface } from './paginacao';
 
 const apiURL = environment.API_URL;

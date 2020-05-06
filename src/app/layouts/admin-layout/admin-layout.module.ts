@@ -10,10 +10,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { RequestInterceptor } from '../../core/auth/request.interceptor.service';
+import { CoreModule } from '../../core/core.module';
 import { ExceptionlModule } from '../../exceptions/exception-components/exception.module';
 import { HomeModule } from '../../home/home.module';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import { TableListComponent } from '../../table-list/table-list.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
@@ -31,12 +30,9 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
     MatTooltipModule,
     ExceptionlModule,
     HomeModule,
+    CoreModule,
   ],
-  declarations: [
-    UserProfileComponent,
-    TableListComponent,
-    NotificationsComponent,
-  ],
+  declarations: [UserProfileComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

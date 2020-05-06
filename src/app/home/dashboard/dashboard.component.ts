@@ -40,11 +40,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.homeService.getIdentificador());
-    window.onbeforeunload = function (e) {
-      return 'Dialog text here.';
-    };
-
     // this.monitorarSessao();
   }
 

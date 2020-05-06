@@ -10,6 +10,8 @@ import { ComponentsModule } from './components/components.module';
 import { RequestInterceptor } from './core/auth/request.interceptor.service';
 import { ExceptionlModule } from './exceptions/exception-components/exception.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { CoreModule } from './core/core.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     RouterModule,
     AppRoutingModule,
     ExceptionlModule,
+    CoreModule,
+    ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY',
     }),

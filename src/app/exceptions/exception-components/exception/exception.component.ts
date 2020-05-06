@@ -1,14 +1,12 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ExceptionModel } from '../exceptionModel';
-import { ExceptionService } from '../exception.service';
-import { Observable, Subscription } from 'rxjs';
-
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
+import { HomeService } from '../../../home/home.service';
 import { ModalFiltersComponent } from '../../modals/modal-filters/modal-filters.component';
 import { ModalComponent } from '../../modals/modal/modal.component';
-
-import { MatPaginator } from '@angular/material/paginator';
-import { HomeService } from '../../../home/home.service';
+import { ExceptionService } from '../exception.service';
+import { ExceptionModel } from '../exceptionModel';
 
 @Component({
   selector: 'app-exception',
@@ -48,7 +46,6 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.realizarConsulta();
-    console.log(this.homeService.getIdentificador());
   }
 
   private realizarConsulta() {
@@ -104,7 +101,6 @@ export class ExceptionComponent implements OnInit, OnDestroy {
 
   removerSubscriptions() {
     this.consulta.forEach((element) => {
-      console.log('Destruindo Componente');
       element.unsubscribe();
     });
   }

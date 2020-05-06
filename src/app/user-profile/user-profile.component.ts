@@ -9,7 +9,5 @@ import { HomeService } from '../home/home.service';
 export class UserProfileComponent implements OnInit {
   constructor(private homeService: HomeService) {}
 
-  ngOnInit() {
-    console.log(this.homeService.getIdentificador());
-  }
+  ngOnInit() {}
 }

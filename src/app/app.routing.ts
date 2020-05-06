@@ -3,8 +3,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { SigninComponent } from './core/signin/signin.component';
+import { AuthGuard } from './core/auth/auth.guard';
 
 const routes: Routes = [
+  {
+    path: 'sigin-in',
+    component: SigninComponent,
+  },
   {
     path: '',
     redirectTo: 'dashboard',

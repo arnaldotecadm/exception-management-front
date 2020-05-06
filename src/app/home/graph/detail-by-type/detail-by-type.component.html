@@ -1,22 +1,30 @@
 <mat-form-field>
   <mat-label>Select an option</mat-label>
-  <mat-select [(value)]="selected" (selectionChange)="changeFilter($event)" #selectExceptionType>
+  <mat-select
+    [(value)]="selected"
+    (selectionChange)="changeFilter($event)"
+    #selectExceptionType
+  >
     <mat-option>None</mat-option>
-    <mat-option *ngFor="let val of inputValues" value="{{val}}">{{val}}</mat-option>
+    <mat-option *ngFor="let val of inputValues" value="{{ val }}">{{
+      val
+    }}</mat-option>
   </mat-select>
 </mat-form-field>
 <div class="card card-chart" style="height: 410px;">
   <div class="card-header">
-    <h5 class="card-title">Total de Exceções Ocorridas: {{numberExceptions}}</h5>
-    <p class="card-category">Mostrando o gráfico deferente à: {{selectedOption}}</p>
+    <h5 class="card-title">
+      Total de Exceções Ocorridas: {{ numberExceptions }}
+    </h5>
+    <p class="card-category">
+      Mostrando o gráfico deferente à: {{ selectedOption }}
+    </p>
   </div>
   <div class="card-body">
     <canvas id="speedChart" width="400" height="100"></canvas>
   </div>
   <div class="card-footer">
     <hr />
-    <div class="card-stats">
-      <i class="fa fa-check"></i> Informações atualizadas às: 15:30
-    </div>
+    <div class="card-stats"></div>
   </div>
 </div>

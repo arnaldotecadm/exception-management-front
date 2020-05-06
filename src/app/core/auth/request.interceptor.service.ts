@@ -1,4 +1,5 @@
 import {
+  HttpErrorResponse,
   HttpHandler,
   HttpHeaderResponse,
   HttpInterceptor,
@@ -9,15 +10,18 @@ import {
   HttpUserEvent,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { HomeService } from '../../home/home.service';
-import { SessionManagementService } from './session-management.service';
+import { catchError } from 'rxjs/operators';
+import { TokenService } from '../token/token.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
   constructor(
-    private sessionManagementService: SessionManagementService,
-    private homeService: HomeService
+    private tokenService: TokenService,
+    private router: Router,
+    private usuarioService: UserService
   ) {}
 
   intercept(
@@ -30,6 +34,23 @@ export class RequestInterceptor implements HttpInterceptor {
     | HttpResponse<any>
     | HttpUserEvent<any>
   > {
-    return next.handle(req);
+    if (this.tokenService.hasToken()) {
+      const token = this.tokenService.getToken();
+      req = req.clone({
+        setHeaders: {
+          Authorization: 'Bearer ' + token,
+        },
+      });
+    }
+
+    return next.handle(req).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.usuarioService.logout();
+          this.router.navigate(['sigin-in']);
+        }
+        throw new HttpErrorResponse(error);
+      })
+    );
   }
 }
