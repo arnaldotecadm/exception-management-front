@@ -1,10 +1,6 @@
 <mat-form-field>
   <mat-label>Select an option</mat-label>
-  <mat-select
-    [(value)]="selected"
-    (selectionChange)="changeFilter($event)"
-    #selectExceptionType
-  >
+  <mat-select (selectionChange)="changeFilter($event)" #selectExceptionType>
     <mat-option>None</mat-option>
     <mat-option *ngFor="let val of inputValues" value="{{ val }}">{{
       val
