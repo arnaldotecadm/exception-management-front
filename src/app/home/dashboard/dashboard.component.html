@@ -96,141 +96,144 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="card" *ngIf="software$ | async as softwareRelease">
-          <div class="card-header card-header-tabs card-header-primary">
-            <div class="nav-tabs-navigation">
-              <div class="nav-tabs-wrapper">
-                <span class="nav-tabs-title"
-                  >Versão Atual:
-                  {{
-                    softwareRelease.updateList[
-                      softwareRelease.updateList.length - 1
-                    ].nome
-                  }}</span
-                >
-                <ul class="nav nav-tabs" data-tabs="tabs">
-                  <li class="nav-item">
-                    <a
-                      mat-button
-                      class="nav-link active"
-                      href="#messages"
-                      data-toggle="tab"
-                    >
-                      <i class="material-icons">code</i> Notas da Atualização
-                      <div class="ripple-container"></div>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      mat-button
-                      class="nav-link"
-                      href="#profile"
-                      data-toggle="tab"
-                    >
-                      <i class="material-icons">bug_report</i>Bugs Corrigidos e
-                      Novas Features
-                      <div class="ripple-container"></div>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      mat-button
-                      class="nav-link"
-                      href="#settings"
-                      data-toggle="tab"
-                    >
-                      <i class="material-icons">cloud</i>Histórico de
-                      Atualizações
-                      <div class="ripple-container"></div>
-                    </a>
-                  </li>
-                </ul>
+          <div *ngIf="softwareRelease.updateList.length > 0">
+            <div class="card-header card-header-tabs card-header-primary">
+              <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                  <span class="nav-tabs-title"
+                    >Versão Atual:
+                    {{
+                      softwareRelease.updateList[
+                        softwareRelease.updateList.length - 1
+                      ].nome
+                    }}</span
+                  >
+                  <ul class="nav nav-tabs" data-tabs="tabs">
+                    <li class="nav-item">
+                      <a
+                        mat-button
+                        class="nav-link active"
+                        href="#messages"
+                        data-toggle="tab"
+                      >
+                        <i class="material-icons">code</i> Notas da Atualização
+                        <div class="ripple-container"></div>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        mat-button
+                        class="nav-link"
+                        href="#profile"
+                        data-toggle="tab"
+                      >
+                        <i class="material-icons">bug_report</i>Bugs Corrigidos
+                        e Novas Features
+                        <div class="ripple-container"></div>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        mat-button
+                        class="nav-link"
+                        href="#settings"
+                        data-toggle="tab"
+                      >
+                        <i class="material-icons">cloud</i>Histórico de
+                        Atualizações
+                        <div class="ripple-container"></div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body">
-            <div class="tab-content">
-              <div class="tab-pane active" id="messages">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td style="text-align: justify;">
-                        {{
-                          softwareRelease.updateList[
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="tab-pane active" id="messages">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td style="text-align: justify;">
+                          {{
+                            softwareRelease.updateList[
+                              softwareRelease.updateList.length - 1
+                            ].notaAtualizacao
+                          }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane" id="profile">
+                  <table class="table">
+                    <tbody>
+                      <tr
+                        *ngFor="
+                          let note of softwareRelease.updateList[
                             softwareRelease.updateList.length - 1
-                          ].notaAtualizacao
-                        }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="tab-pane" id="profile">
-                <table class="table">
-                  <tbody>
-                    <tr
-                      *ngFor="
-                        let note of softwareRelease.updateList[
-                          softwareRelease.updateList.length - 1
-                        ].updateDetailList
-                      "
+                          ].updateDetailList
+                        "
+                      >
+                        <td class="col-md-2">
+                          {{ note.updateDetailType }}
+                        </td>
+                        <td class="col-md-2">
+                          {{ note.nome }}
+                        </td>
+                        <td class="col-md-8">
+                          {{ note.descricao }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane" id="settings">
+                  <mat-accordion>
+                    <mat-expansion-panel
+                      *ngFor="let release of softwareRelease.updateList"
                     >
-                      <td class="col-md-2">
-                        {{ note.updateDetailType }}
-                      </td>
-                      <td class="col-md-2">
-                        {{ note.nome }}
-                      </td>
-                      <td class="col-md-8">
-                        {{ note.descricao }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="tab-pane" id="settings">
-                <mat-accordion>
-                  <mat-expansion-panel
-                    *ngFor="let release of softwareRelease.updateList"
-                  >
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        {{ release.nome }}
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        {{
-                          release.dataAtualizacao | date: 'dd/MM/yyyy HH:mm:ss'
-                        }}
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{ release.nome }}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          {{
+                            release.dataAtualizacao
+                              | date: 'dd/MM/yyyy HH:mm:ss'
+                          }}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
 
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="content">
-                          <span class="nav-tabs-title">
-                            {{ release.notaAtualizacao }}</span
-                          >
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="content">
+                            <span class="nav-tabs-title">
+                              {{ release.notaAtualizacao }}</span
+                            >
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <table class="table">
-                      <tbody>
-                        <tr *ngFor="let note of release.updateDetailList">
-                          <td class="col-md-2">
-                            {{ note.updateDetailType }}
-                          </td>
-                          <td class="col-md-2">
-                            {{ note.nome }}
-                          </td>
-                          <td class="col-md-8">
-                            {{ note.descricao }}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </mat-expansion-panel>
-                </mat-accordion>
+                      <table class="table">
+                        <tbody>
+                          <tr *ngFor="let note of release.updateDetailList">
+                            <td class="col-md-2">
+                              {{ note.updateDetailType }}
+                            </td>
+                            <td class="col-md-2">
+                              {{ note.nome }}
+                            </td>
+                            <td class="col-md-8">
+                              {{ note.descricao }}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
               </div>
             </div>
           </div>

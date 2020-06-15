@@ -7,10 +7,12 @@
   >
     <div class="card card-chart" style="width: 500px;">
       <div class="card-header card-header-success">
-        <div class="ct-chart" id="{{ graph.title }}"></div>
+        <div class="ct-chart" [id]="this.getIdGrafico(graph.title)"></div>
       </div>
       <div class="card-body">
-        <h4 class="card-title">{{ graph.title }} => ( {{ graph.total }})</h4>
+        <h4 class="card-title" style="white-space: break-spaces;">
+          {{ graph.title }} => ( {{ graph.total }})
+        </h4>
       </div>
       <div class="card-footer">
         <div class="stats">

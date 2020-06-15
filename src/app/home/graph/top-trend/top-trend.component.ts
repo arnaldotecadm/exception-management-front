@@ -99,12 +99,16 @@ export class TopTrendComponent implements OnInit {
     ];
 
     const dailySalesChart = new Chartist.Line(
-      '#' + graph.title,
+      '#' + this.getIdGrafico(graph.title),
       dataDailySalesChart,
       optionsDailySalesChart,
       responsiveOptions
     );
     this.startAnimationForLineChart(dailySalesChart);
+  }
+
+  public getIdGrafico(nomeException: string) {
+    return nomeException.replace(/\./g, '_');
   }
 
   startAnimationForLineChart(chart) {
